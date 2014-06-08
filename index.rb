@@ -56,7 +56,7 @@ class Floor < Chingu::GameObject
   traits :bounding_box, :collision_detection
   
   def setup
-    @image = Image["burried.png"]
+    @image = Image["floor1.png"]
     self.width = 8000
     self.height = 40
     self.rotation_center = :bottom_left
