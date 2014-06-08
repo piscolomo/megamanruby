@@ -34,8 +34,7 @@ class Ball < Chingu::GameObject
 
   def initialize(options={})
   	super
-  	puts options
-  	@direction = options[:direction].to_s
+  	@direction = options[:direction]
   end
 
   def update
@@ -92,7 +91,7 @@ class Megaman < Chingu::GameObject
 	end
 
 	def left_control
-		Ball.create(:x => @x, :y => @y, :direction => @direction)
+		Ball.create(:x => @x, :y => @y-self.height/2, :direction => @direction.to_s)
 	end
 
 	def update
