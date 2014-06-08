@@ -24,6 +24,29 @@ class Floor < Chingu::GameObject
   end
 end
 
+class Ball < Chingu::GameObject
+  traits :bounding_box, :collision_detection
+  
+  def setup
+    @image = Image["bala.png"]
+    cache_bounding_box
+  end
+
+  def initialize(options={})
+  	super
+  	puts options
+  	@direction = options[:direction].to_s
+  end
+
+  def update
+    if @direction == "right" 
+    	@x += 4
+    else
+    	@x -= 4
+    end
+  end
+end
+
 class Megaman < Chingu::GameObject
 	traits :bounding_box, :collision_detection,  :velocity
 	attr_accessor :jumping
@@ -41,7 +64,8 @@ class Megaman < Chingu::GameObject
 
 	def initialize(options={})
 		super
-		self.input = [:holding_left, :holding_right, :holding_up]
+		self.input = [:holding_left, :holding_right, :holding_up, :left_control]
+
 		@animations[:stand] = Chingu::Animation.new(:file => "standfull.png", :size => [31,24], :delay => 500)
 		@animations[:stand].frame_names = { :left => 0..1, :right => 2..3}
 		@animations[:run] = Chingu::Animation.new(:file => "runfull.png", :size => [24,24], :delay => 200)
@@ -67,9 +91,13 @@ class Megaman < Chingu::GameObject
 		self.velocity_y = -10
 	end
 
+	def left_control
+		Ball.create(:x => @x, :y => @y, :direction => @direction)
+	end
+
 	def update
 		@state = :stand if @x == @last_x
-		
+
 		if @jumping
 			@image = Image["jump#{@direction}.png"]
 		else
