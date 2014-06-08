@@ -43,11 +43,9 @@ class Megaman < Chingu::GameObject
 		super
 		self.input = [:holding_left, :holding_right, :holding_up]
 		@animations[:stand] = Chingu::Animation.new(:file => "standfull.png", :size => [31,24], :delay => 500)
-		@animations[:stand].frame_names = { :shootleft => 0, :left => 1..3, :right => 4..6, :shootright => 7}
+		@animations[:stand].frame_names = { :left => 0..1, :right => 2..3}
 		@animations[:run] = Chingu::Animation.new(:file => "runfull.png", :size => [24,24], :delay => 200)
 		@animations[:run].frame_names = { :left => 0..3, :right => 4..7}
-		@animations[:jump] = Chingu::Animation.new(:file => "jumpfull.png", :size => [35,31])
-		@animations[:jump].frame_names = {:left => 0, :shootleft=> 1, :right => 2, :shootright => 3}
 	end
 
 	def holding_left
@@ -71,9 +69,9 @@ class Megaman < Chingu::GameObject
 
 	def update
 		@state = :stand if @x == @last_x
-		puts @jumping
+		
 		if @jumping
-			#@image = @animations[@state][@direction]
+			@image = Image["jump#{@direction}.png"]
 		else
 			@image = @animations[@state][@direction].next!
 		end
@@ -81,9 +79,9 @@ class Megaman < Chingu::GameObject
 		@last_x, @last_y = @x, @y
 
 		self.each_collision(Floor) do |me, stone_wall|
-      if self.velocity_y < 0  # hit the ceiling
-        me.y = stone_wall.bb.bottom + me.image.height * self.factor_y
-        self.velocity_y = 0
+      if me.velocity_y < 0  # down to hit the ceiling
+        me.y = stone_wall.bb.bottom + me.image.height * me.factor_y
+        me.velocity_y = 0
       else  # Land on ground
         @jumping = false        
         me.y = stone_wall.bb.top-1
