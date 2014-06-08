@@ -6,9 +6,41 @@ class Game < Chingu::Window
 		super(800, 600)
 		self.caption = "Megaman Game"
 		self.input = {:escape => :exit}
+		push_game_state(Intro)
+	end
+end
+
+class Intro < Chingu::GameState
+	def initialize
+		super
+		self.input = {:return => Play}
+	end
+	def draw
+		super
+		Image["intro2.png"].draw(0, 0, 0)
+	end
+end
+
+class Play < Chingu::GameState
+	def initialize
+		super
+		self.input = {:p => Pause}
 		@megaman = Megaman.create(:x => 80, :y=>300)
 		@floor = Floor.create(:x => 0, :y => 550)
-	end  
+	end
+end
+
+class Pause < Chingu::GameState
+  def initialize
+    super
+    self.input = {:p => :un_pause}
+    @title = Chingu::Text.create(:text=> "PAUSA, aprieta p nuevamente para seguir jugando", :x=> 100, :y=> 200, :size=> 20)
+  end
+  def un_pause; pop_game_state; end
+  def draw
+    super
+    previous_game_state.draw
+  end
 end
 
 class Floor < Chingu::GameObject
