@@ -16,7 +16,6 @@ class Floor < Chingu::GameObject
   
   def setup
     @image = Image["burried.png"]
-    @color = Color.new(0xff808080)
     self.width = 8000
     self.height = 40
     self.rotation_center = :bottom_left
@@ -25,11 +24,11 @@ class Floor < Chingu::GameObject
 end
 
 class Ball < Chingu::GameObject
-  traits :bounding_box, :collision_detection
+  traits :bounding_circle, :collision_detection
   
   def setup
     @image = Image["bala.png"]
-    cache_bounding_box
+    cache_bounding_circle
   end
 
   def initialize(options={})
@@ -47,8 +46,8 @@ class Ball < Chingu::GameObject
 end
 
 class Megaman < Chingu::GameObject
-	traits :bounding_box, :collision_detection,  :velocity
-	attr_accessor :jumping
+	traits :bounding_box, :collision_detection, :velocity, :timer
+	attr_accessor :jumping, :shooting
 
 	def setup
 		@animations = {}
@@ -85,33 +84,35 @@ class Megaman < Chingu::GameObject
 
 	def holding_up
 		return if @jumping
-		@state = :jump
 		@jumping = true
 		self.velocity_y = -10
 	end
 
 	def left_control
+		return if @shooting
 		Ball.create(:x => @x, :y => @y-self.height/2, :direction => @direction.to_s)
+		@shooting = true
+		after(120){ @shooting = false }
 	end
 
 	def update
 		@state = :stand if @x == @last_x
 
 		if @jumping
-			@image = Image["jump#{@direction}.png"]
+			@image = @shooting ? Image["jump_shoot#{@direction}.png"] : Image["jump#{@direction}.png"]
 		else
-			@image = @animations[@state][@direction].next!
+			@image = @shooting ? Image["shoot#{@direction}.png"] : @animations[@state][@direction].next!
 		end
-
+	
 		@last_x, @last_y = @x, @y
 
-		self.each_collision(Floor) do |me, stone_wall|
+		self.each_collision(Floor) do |me, floor|
       if me.velocity_y < 0  # down to hit the ceiling
-        me.y = stone_wall.bb.bottom + me.image.height * me.factor_y
+        me.y = floor.bb.bottom + me.image.height * me.factor_y
         me.velocity_y = 0
       else  # Land on ground
         @jumping = false        
-        me.y = stone_wall.bb.top-1
+        me.y = floor.bb.top
       end
     end
 	end
