@@ -17,7 +17,7 @@ class Intro < Chingu::GameState
 	end
 	def draw
 		super
-		Image["intro2.png"].draw(0, 0, 0)
+		Image["intro.jpg"].draw(0, 0, 0)
 	end
 end
 
@@ -25,8 +25,17 @@ class Play < Chingu::GameState
 	def initialize
 		super
 		self.input = {:p => Pause}
+		@parallax = Chingu::Parallax.create(:x => 0, :y=>0, :rotation_center => :top_left)
+    @parallax.add_layer(:image => "background.jpg")
 		@megaman = Megaman.create(:x => 80, :y=>300)
 		@floor = Floor.create(:x => 0, :y => 550)
+	end
+
+	def update
+		super
+		unless @megaman.state == :stand
+			@megaman.direction == :left ? @parallax.camera_x -= 0.5 : @parallax.camera_x += 0.5
+		end
 	end
 end
 
@@ -79,7 +88,7 @@ end
 
 class Megaman < Chingu::GameObject
 	traits :bounding_box, :collision_detection, :velocity, :timer
-	attr_accessor :jumping, :shooting
+	attr_accessor :jumping, :shooting, :state, :direction
 
 	def setup
 		@animations = {}
