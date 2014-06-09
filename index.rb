@@ -1,5 +1,6 @@
 require 'chingu'
 include Gosu
+include Chingu
 
 class Game < Chingu::Window
 	def initialize
@@ -22,15 +23,22 @@ class Intro < Chingu::GameState
 end
 
 class Play < Chingu::GameState
+	trait :viewport
 	def initialize
 		super
-		self.input = {:p => Pause}
+		self.input = {:p => Pause, :e => :edit}
+		self.viewport.lag = 0
+		self.viewport.game_area = [0,0,1000,1000]
+		load_game_objects
 		@parallax = Chingu::Parallax.create(:x => 0, :y=>0, :rotation_center => :top_left)
     @parallax.add_layer(:image => "background.jpg")
 		@megaman = Megaman.create(:x => 80, :y=>500)
-		@enemyface = EnemyFace.create(:x => 700, :y=>300)
 		@floor = Floor.create(:x => 0, :y => 650)
 	end
+
+	def edit
+    push_game_state(GameStates::Edit.new(:grid => [18,18], :classes => [EnemyFace]))
+  end
 
 	def update
 		super
@@ -177,14 +185,15 @@ end
 class EnemyFace < Chingu::GameObject
 	traits :bounding_circle, :collision_detection
 	attr_accessor :direction
+	
 	def setup
-		@direction = :left
-	end
-	def initialize(options={})
-		super
 		@animations= Chingu::Animation.new(:file => "enemyface.png", :size => [56,48], :delay => 400)
 		@animations.frame_names = { :left => 0..3, :right => 4..7}
+		@direction = :left
+		@image = @animations[@direction].next
+		@zorder = 999999
 	end
+
 	def update
 		@image = @animations[@direction].next
 	end
