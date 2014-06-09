@@ -27,8 +27,9 @@ class Play < Chingu::GameState
 		self.input = {:p => Pause}
 		@parallax = Chingu::Parallax.create(:x => 0, :y=>0, :rotation_center => :top_left)
     @parallax.add_layer(:image => "background.jpg")
-		@megaman = Megaman.create(:x => 80, :y=>300)
-		@floor = Floor.create(:x => 0, :y => 550)
+		@megaman = Megaman.create(:x => 80, :y=>500)
+		@enemyface = EnemyFace.create(:x => 700, :y=>300)
+		@floor = Floor.create(:x => 0, :y => 650)
 	end
 
 	def update
@@ -36,6 +37,20 @@ class Play < Chingu::GameState
 		unless @megaman.state == :stand
 			@megaman.direction == :left ? @parallax.camera_x -= 0.5 : @parallax.camera_x += 0.5
 		end
+		EnemyFace.all.each do |face|
+    	if face.x < @megaman.x
+    		face.x += 1 
+    		face.direction = :right
+    	else
+    		face.x -= 1
+    		face.direction = :left
+    	end
+    	face.y < @megaman.y - @megaman.height/2 ? face.y += 1 : face.y -= 1
+    end
+    Ball.each_collision(EnemyFace){ |ball, face|
+	    face.destroy
+	    ball.destroy
+    }
 	end
 end
 
@@ -57,8 +72,8 @@ class Floor < Chingu::GameObject
   
   def setup
     @image = Image["floor1.png"]
-    self.width = 8000
-    self.height = 40
+    self.width = 800
+    self.height = 104
     self.rotation_center = :bottom_left
     cache_bounding_box
   end
@@ -105,7 +120,7 @@ class Megaman < Chingu::GameObject
 		super
 		self.input = [:holding_left, :holding_right, :holding_up, :left_control]
 
-		@animations[:stand] = Chingu::Animation.new(:file => "standfull.png", :size => [62,48], :delay => 500)
+		@animations[:stand] = Chingu::Animation.new(:file => "standfull.png", :size => [62,48], :delay => 800)
 		@animations[:stand].frame_names = { :left => 0..1, :right => 2..3}
 		@animations[:run] = Chingu::Animation.new(:file => "runfull.png", :size => [48,48], :delay => 200)
 		@animations[:run].frame_names = { :left => 0..3, :right => 4..7}
@@ -156,6 +171,22 @@ class Megaman < Chingu::GameObject
         me.y = floor.bb.top
       end
     end
+	end
+end
+
+class EnemyFace < Chingu::GameObject
+	traits :bounding_circle, :collision_detection
+	attr_accessor :direction
+	def setup
+		@direction = :left
+	end
+	def initialize(options={})
+		super
+		@animations= Chingu::Animation.new(:file => "enemyface.png", :size => [56,48], :delay => 400)
+		@animations.frame_names = { :left => 0..3, :right => 4..7}
+	end
+	def update
+		@image = @animations[@direction].next
 	end
 end
 
