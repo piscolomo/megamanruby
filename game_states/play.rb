@@ -4,23 +4,26 @@ class Play < Chingu::GameState
 		super
 		self.input = {:p => Pause, :e => :edit}
 		self.viewport.lag = 0
-		self.viewport.game_area = [0,0,1000,1000]
+		self.viewport.game_area = [0,0,5000,600]
 		load_game_objects
 		@parallax = Chingu::Parallax.create(:x => 0, :y=>0, :rotation_center => :top_left)
     @parallax.add_layer(:image => "background.jpg")
 		@megaman = Megaman.create(:x => 80, :y=>500)
-		@floor = Floor.create(:x => 0, :y => 650)
 	end
 
 	def edit
-    push_game_state(GameStates::Edit.new(:grid => [18,18], :classes => [EnemyFace]))
+    push_game_state(GameStates::Edit.new(:grid => [18,18], :classes => [EnemyFace, Floor]))
   end
 
 	def update
 		super
+
+		self.viewport.center_around(@megaman)
+
 		unless @megaman.state == :stand
 			@megaman.direction == :left ? @parallax.camera_x -= 0.5 : @parallax.camera_x += 0.5
 		end
+
 		EnemyFace.all.each do |face|
     	if face.x < @megaman.x
     		face.x += 1 
@@ -31,6 +34,7 @@ class Play < Chingu::GameState
     	end
     	face.y < @megaman.y - @megaman.height/2 ? face.y += 1 : face.y -= 1
     end
+
     Ball.each_collision(EnemyFace){ |ball, face|
 	    face.destroy
 	    ball.destroy
