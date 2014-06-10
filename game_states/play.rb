@@ -46,7 +46,8 @@ class Play < Chingu::GameState
     end
 
     @megaman.each_collision(EnemyFace) do |me, face|
-    	@lifebar.downlife(face.power)
+    	me.take_damage
+      @lifebar.downlife(face.power)
     end
 	end
 end
