@@ -20,9 +20,9 @@ class Lifebar < Chingu::GameObject
   	for i in (0..damage-1) do
   		lineout = @lines.shift
   		lineout.destroy
+  		@health = @lines.size
   	end
   	after(3000){ @hitting = false }
-  	puts @lines.size
   end
 
 end
