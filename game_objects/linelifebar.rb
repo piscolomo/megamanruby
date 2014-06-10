@@ -1,11 +1,6 @@
 class Linelifebar < Chingu::GameObject
 	attr_accessor :height
 
-  def initialize(options={})
-  	super
-  	@y = options[:y]
-  end
-
   def to_s; end
   
   def setup
