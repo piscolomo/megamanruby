@@ -9,6 +9,7 @@ class Play < Chingu::GameState
 		@parallax = Chingu::Parallax.create(:x => 0, :y=>0, :rotation_center => :top_left)
     @parallax.add_layer(:image => "background.jpg")
 		@megaman = Megaman.create(:x => 80, :y=>500)
+		@barlife = Lifebar.create()
 	end
 
 	def edit

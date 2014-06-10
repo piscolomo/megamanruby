@@ -1,7 +1,7 @@
 ---
 - EnemyFace:
-    :x: 644.0
-    :y: 292.0
+    :x: 539.0
+    :y: 397.0
     :angle: 0
     :zorder: 999999
     :factor_x: 1.0
