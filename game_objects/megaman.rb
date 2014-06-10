@@ -10,6 +10,7 @@ class Megaman < Chingu::GameObject
 		self.max_velocity = 10
 		self.acceleration_y = 0.5
 		self.rotation_center = :bottom_center
+		@zorder = 9999999
 		@last_x, @last_y = @x, @y
 	end
 
@@ -60,13 +61,13 @@ class Megaman < Chingu::GameObject
 		@last_x, @last_y = @x, @y
 
 		self.each_collision(Floor) do |me, floor|
-      if me.velocity_y < 0  # down to hit the ceiling
-        me.y = floor.bb.bottom + me.image.height * me.factor_y
-        me.velocity_y = 0
-      else  # Land on ground
-        @jumping = false        
-        me.y = floor.bb.top
-      end
-    end
+	    if me.velocity_y < 0  # down to hit the ceiling
+	      me.y = floor.bb.bottom + me.image.height * me.factor_y
+	      me.velocity_y = 0
+	    else  # Land on ground
+	      @jumping = false        
+	      me.y = floor.bb.top
+	    end
+	  end
 	end
 end

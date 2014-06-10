@@ -3,6 +3,7 @@ class Ball < Chingu::GameObject
   
   def setup
     @image = Image["bala.png"]
+    @zorder = 9999999
     cache_bounding_circle
   end
 
@@ -12,10 +13,6 @@ class Ball < Chingu::GameObject
   end
 
   def update
-    if @direction == "right" 
-    	@x += 4
-    else
-    	@x -= 4
-    end
+    @direction == "right" ?  @x += 4 : @x -= 4
   end
 end
