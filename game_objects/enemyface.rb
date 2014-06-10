@@ -1,6 +1,6 @@
 class EnemyFace < Chingu::GameObject
 	traits :bounding_circle, :collision_detection
-	attr_accessor :direction
+	attr_accessor :direction, :power
 	
 	def setup
 		@animations= Chingu::Animation.new(:file => "enemyface.png", :size => [56,48], :delay => 400)
@@ -8,6 +8,7 @@ class EnemyFace < Chingu::GameObject
 		@direction = :left
 		@image = @animations[@direction].next
 		@zorder = 999999
+		@power = 3
 	end
 
 	def update
