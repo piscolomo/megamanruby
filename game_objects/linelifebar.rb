@@ -5,6 +5,8 @@ class Linelifebar < Chingu::GameObject
   	super
   	@y = options[:y]
   end
+
+  def to_s; end
   
   def setup
   	@x = 50

@@ -40,5 +40,9 @@ class Play < Chingu::GameState
 	    face.destroy
 	    ball.destroy
     }
+
+    @megaman.each_collision(EnemyFace){ |me, face|
+    	@barlife.downlife(1)
+    }
 	end
 end
