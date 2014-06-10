@@ -9,11 +9,16 @@ class Play < Chingu::GameState
 		@parallax = Chingu::Parallax.create(:x => 0, :y=>0, :rotation_center => :top_left)
     @parallax.add_layer(:image => "background.jpg")
 		@megaman = Megaman.create(:x => 80, :y=>500)
-		@barlife = Lifebar.create()
+		@lifebar = Lifebar.create()
 	end
 
 	def edit
     push_game_state(GameStates::Edit.new(:grid => [18,18], :classes => [EnemyFace, Floor]))
+  end
+
+  def draw
+  	super
+  	@lifebar.draw_position(self.viewport.x)
   end
 
 	def update
@@ -42,7 +47,7 @@ class Play < Chingu::GameState
     }
 
     @megaman.each_collision(EnemyFace){ |me, face|
-    	@barlife.downlife(1)
+    	@lifebar.downlife(1)
     }
 	end
 end

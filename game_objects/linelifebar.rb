@@ -1,10 +1,9 @@
 class Linelifebar < Chingu::GameObject
-	attr_accessor :height
+	attr_accessor :height, :x
 
   def to_s; end
   
   def setup
-  	@x = 50
   	@color = 0xffffffff
     @width = 20
     @height = 3
