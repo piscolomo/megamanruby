@@ -26,9 +26,10 @@ class Play < Chingu::GameState
 
 		self.viewport.center_around(@megaman)
 
-		unless @megaman.state == :stand
-			@megaman.direction == :left ? @parallax.camera_x -= 0.5 : @parallax.camera_x += 0.5
-		end
+		#unless @megaman.state == :stand
+			#@megaman.direction == :left ? @parallax.camera_x -= 0.5 : @parallax.camera_x += 0.5
+		#end
+		@parallax.camera_x = self.viewport.x
 
 		EnemyFace.all.each do |face|
     	if face.x < @megaman.x
