@@ -32,12 +32,21 @@ class Play < Chingu::GameState
 
 	def update
 		super
+
+    #lose the game if your life is 0
     push_game_state(Lose) if @lifebar.health == 0
 
+    #move the background
 		self.viewport.center_around(@megaman)
 		@parallax.camera_x, @parallax.camera_y = self.viewport.x.to_i, self.viewport.y.to_i
 		@parallax.update
 
+    #balls are destroyed if they are outside the view
+    Ball.all.each do |ball|
+      ball.destroy unless self.viewport.inside?(ball)
+    end
+
+    #make the enemyface follow megaman
 		EnemyFace.all.each do |face|
     	if face.x < @megaman.x
     		face.x += 1 
@@ -49,11 +58,13 @@ class Play < Chingu::GameState
     	face.y < @megaman.y - @megaman.height/2 ? face.y += 1 : face.y -= 1
     end
 
+    #destroy enemyface and ball if collision  
     Ball.each_collision(EnemyFace) do |ball, face|
 	    face.destroy
 	    ball.destroy
     end
 
+    #down life if megaman collision with enemyface
     @megaman.each_collision(EnemyFace) do |me, face|
     	me.take_damage
       @lifebar.downlife(face.power)
