@@ -7,7 +7,7 @@ class Megaman < Chingu::GameObject
 		@state = :stand
 		@direction = :right
 		@jumping = false
-		@reciving_damage = false
+		@receiving_damage = false
 		@ready = true
 		self.max_velocity = 10
 		self.acceleration_y = 0.5
@@ -54,16 +54,16 @@ class Megaman < Chingu::GameObject
 	def take_damage
 		return unless @ready
 		@ready = false
-		@reciving_damage = true
+		@receiving_damage = true
 		@direction == :right ? @x -= 10 : @x += 10
-		after(500){@reciving_damage = false}
+		after(500){@receiving_damage = false}
 		after(3000){@ready = true}
 	end
 
 	def update
 		@state = :stand if @x == @last_x
 
-		if @reciving_damage
+		if @receiving_damage
 			@image = Image["hurt#{@direction}.png"]
 		elsif @jumping
 			@image = @shooting ? Image["jump_shoot#{@direction}.png"] : Image["jump#{@direction}.png"]

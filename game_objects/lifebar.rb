@@ -20,7 +20,7 @@ class Lifebar < Chingu::GameObject
   end
 
   def draw
-    if @lines.size > 0
+    unless @lines.empty?
       @lines.each { |line|
         line.x = @posx.to_i + @x
       }
@@ -30,11 +30,13 @@ class Lifebar < Chingu::GameObject
   def downlife(damage)
   	return if @hitting
   	@hitting = true
-  	for i in (0..damage-1) do
-  		lineout = @lines.shift
-  		lineout.destroy
-  		@health = @lines.size
-  	end
+    unless @lines.empty?
+    	for i in (0..damage-1) do
+    		lineout = @lines.shift
+    		lineout.destroy
+    		@health = @lines.size
+    	end
+    end
   	after(3000){ @hitting = false }
   end
 
