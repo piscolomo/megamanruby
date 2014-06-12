@@ -4,7 +4,7 @@
     :y: 594.0
     :angle: 0
     :zorder: 999999
-    :factor_x: 13.559322033898304
+    :factor_x: 47.05882352941177
     :factor_y: 1.0
     :alpha: 255
 - Floor:
@@ -12,7 +12,7 @@
     :y: 599.0
     :angle: 0
     :zorder: 999999
-    :factor_x: 13.559322033898304
+    :factor_x: 47.05882352941177
     :factor_y: 1.0
     :alpha: 255
 - Floor:
@@ -20,7 +20,7 @@
     :y: 612.0
     :angle: 0
     :zorder: 999999
-    :factor_x: 13.559322033898304
+    :factor_x: 47.05882352941177
     :factor_y: 1.0
     :alpha: 255
 - Floor:
@@ -28,14 +28,22 @@
     :y: 630.0
     :angle: 0
     :zorder: 999999
-    :factor_x: 13.559322033898304
+    :factor_x: 47.05882352941177
     :factor_y: 1.0
     :alpha: 255
 - EnemyFace:
-    :x: 616.0
-    :y: 438.0
+    :x: 443.0
+    :y: 519.0
     :angle: 0
     :zorder: 999999
     :factor_x: 1.0
     :factor_y: 1.0
+    :alpha: 255
+- Lifeball:
+    :x: 738.0
+    :y: 522.0
+    :angle: 0
+    :zorder: 9999999
+    :factor_x: 1
+    :factor_y: 1
     :alpha: 255

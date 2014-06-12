@@ -21,7 +21,7 @@ class Play < GameState
   end
 
 	def edit
-    push_game_state(GameStates::Edit.new(:grid => [18,18], :classes => [EnemyFace, Floor]))
+    push_game_state(GameStates::Edit.new(:grid => [18,18], :classes => [EnemyFace, Floor, Lifeball]))
   end
 
   def draw
@@ -71,6 +71,12 @@ class Play < GameState
     @megaman.each_collision(EnemyFace) do |me, face|
     	me.take_damage
       @lifebar.downlife(face.power)
+    end
+
+    #up life if megaman take the lifeball
+    @megaman.each_collision(Lifeball) do |me, lifeball|
+      @lifebar.uplife
+      lifeball.destroy
     end
 	end
 end

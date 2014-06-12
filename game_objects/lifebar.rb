@@ -3,7 +3,8 @@ class Lifebar < GameObject
   trait :timer
   
   def setup
-    @health = 30
+    @max_health = 10
+    @health = 9
     @x = 30
     @y = 100
     @lines = []
@@ -13,6 +14,10 @@ class Lifebar < GameObject
     	@y += line.height + 2
     	@lines << line
     end
+  end
+
+  def refresh_life
+    @health = @lines.size
   end
 
   def draw_position(posx)
@@ -32,10 +37,22 @@ class Lifebar < GameObject
           unless @lines.empty?
         		lineout = @lines.shift
         		lineout.destroy
-        		@health = @lines.size
+            refresh_life
         	end
         end
     	after(3000){ @hitting = false }
+    end
+  end
+
+  def uplife
+    posy = @lines.first.y
+    5.times do
+      if @health < @max_health
+        line = Linelifebar.create(:x => @x, :y => posy )
+        posy -= line.height + 2
+        @lines.unshift line
+        refresh_life
+      end
     end
   end
 
