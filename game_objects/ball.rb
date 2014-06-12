@@ -13,6 +13,6 @@ class Ball < Chingu::GameObject
   end
 
   def update
-    @direction == "right" ?  @x += 12 : @x -= 12
+    @direction == "right" ?  @x += 6 : @x -= 6
   end
 end

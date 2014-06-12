@@ -1,6 +1,6 @@
 class Megaman < Chingu::GameObject
 	traits :bounding_box, :collision_detection, :velocity, :timer
-	attr_accessor :jumping, :shooting, :state, :direction
+	attr_accessor :jumping, :shooting, :state, :direction, :last_x
 
 	def setup
 		@animations = {}
@@ -62,6 +62,9 @@ class Megaman < Chingu::GameObject
 
 	def update
 		@state = :stand if @x == @last_x
+
+		#megaman dont dissapear from the left side
+		@x = @last_x if @x < 0 and outside_window?
 
 		if @receiving_damage
 			@image = Image["hurt#{@direction}.png"]
