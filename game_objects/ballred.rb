@@ -1,8 +1,8 @@
-class Ball < GameObject
+class BallRed < GameObject
   traits :bounding_circle, :collision_detection
   
   def setup
-    @image = Image["bala.png"]
+    @image = Image["enemyball.png"]
     @zorder = 9999999
     cache_bounding_circle
   end

@@ -1,7 +1,7 @@
 ---
 - Floor:
-    :x: 1062.0
-    :y: 594.0
+    :x: 756.0
+    :y: 612.0
     :angle: 0
     :zorder: 999999
     :factor_x: 47.05882352941177
@@ -31,33 +31,9 @@
     :factor_x: 47.05882352941177
     :factor_y: 1.0
     :alpha: 255
-- EnemyFace:
-    :x: 208.0
-    :y: 392.0
-    :angle: 0
-    :zorder: 999999
-    :factor_x: 1
-    :factor_y: 1.0
-    :alpha: 255
 - EnemyTiny:
-    :x: 204.0
-    :y: 384.0
-    :angle: 0
-    :zorder: 999999
-    :factor_x: 1
-    :factor_y: 1.0
-    :alpha: 255
-- EnemyTiny:
-    :x: 738.0
-    :y: 531.5
-    :angle: 0
-    :zorder: 999999
-    :factor_x: 1
-    :factor_y: 1.0
-    :alpha: 255
-- EnemyFace:
-    :x: 738.0
-    :y: 378.0
+    :x: 1188.0
+    :y: 468.0
     :angle: 0
     :zorder: 999999
     :factor_x: 1

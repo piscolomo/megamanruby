@@ -47,7 +47,7 @@ class Megaman < GameObject
 
 	def left_control
 		unless @shooting
-			Ball.create(:x => @x, :y => @y-self.height/2, :direction => @direction.to_s)
+			Ball.create(:x => @x, :y => @y-self.height/2, :direction => @direction)
 			@shooting = true
 			after(120){ @shooting = false }
 		end

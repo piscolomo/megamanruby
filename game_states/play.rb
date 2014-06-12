@@ -31,8 +31,9 @@ class Play < GameState
   end
 
   #make the EnemyFace follow megaman
-  def follow_megaman(classname, distance, fly=false)
+  def follow_megaman(classname, distance, fly=false, shoot=false)
     classname.all.each do |enemy|
+      enemy.shoot if shoot and self.viewport.inside?(enemy)
       unless (@megaman.x - enemy.x).abs > distance
         enemy.state = :walk
         (enemy.y < @megaman.y - @megaman.height/2 ? enemy.y += 1 : enemy.y -= 1) if fly
@@ -62,17 +63,16 @@ class Play < GameState
 		@parallax.update
 
     #balls are destroyed if they are outside the view
-    Ball.all.each do |ball|
-      ball.destroy unless self.viewport.inside?(ball)
-    end
+    Ball.all.each {|ball| ball.destroy unless self.viewport.inside?(ball)}
+    BallRed.all.each {|ball| ball.destroy unless self.viewport.inside?(ball)}
 
     #enemies moves
     follow_megaman(EnemyFace, 600, true)
-    follow_megaman(EnemyTiny, 300)
+    follow_megaman(EnemyTiny, 300, false, true)
 
     #destroy EnemyFace and ball if collision  
-    Ball.each_collision(EnemyFace) do |ball, face|
-	    face.destroy
+    Ball.each_collision(EnemyFace, EnemyTiny) do |ball, enemy|
+	    enemy.destroy
 	    ball.destroy
     end
 

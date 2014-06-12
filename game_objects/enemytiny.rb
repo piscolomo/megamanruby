@@ -1,5 +1,5 @@
 class EnemyTiny < GameObject
-	traits :bounding_box, :collision_detection, :velocity
+	traits :bounding_box, :collision_detection, :velocity, :timer
 	attr_accessor :state, :power
 
 	def setup
@@ -10,8 +10,19 @@ class EnemyTiny < GameObject
 		@image = @animations[@state].next
 		@zorder = 999999
 		@power = 2
+		@shooting = false
 		self.max_velocity = 10
     self.acceleration_y = 0.5
+	end
+
+	def direction; @factor_x > 0 ? :left : :right; end
+
+	def shoot
+		unless @shooting
+			BallRed.create(:x => @x, :y => @y-self.height/2, :direction => direction)
+			@shooting = true
+			after(1500){ @shooting = false }
+		end
 	end
 
 	def update
