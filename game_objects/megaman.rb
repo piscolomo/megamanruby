@@ -1,6 +1,6 @@
 class Megaman < Chingu::GameObject
 	traits :bounding_box, :collision_detection, :velocity, :timer
-	attr_accessor :jumping, :shooting, :state, :direction, :last_x
+	attr_accessor :jumping, :shooting, :state, :direction
 
 	def setup
 		@animations = {}
@@ -39,25 +39,28 @@ class Megaman < Chingu::GameObject
 	end
 
 	def holding_up
-		return if @jumping
-		@jumping = true
-		self.velocity_y = -10
+		unless @jumping
+			@jumping = true
+			self.velocity_y = -10
+		end
 	end
 
 	def left_control
-		return if @shooting
-		Ball.create(:x => @x, :y => @y-self.height/2, :direction => @direction.to_s)
-		@shooting = true
-		after(120){ @shooting = false }
+		unless @shooting
+			Ball.create(:x => @x, :y => @y-self.height/2, :direction => @direction.to_s)
+			@shooting = true
+			after(120){ @shooting = false }
+		end
 	end
 
 	def take_damage
-		return unless @ready
-		@ready = false
-		@receiving_damage = true
-		@direction == :right ? @x -= 10 : @x += 10
-		after(500){@receiving_damage = false}
-		after(3000){@ready = true}
+		if @ready
+			@ready = false
+			@receiving_damage = true
+			@direction == :right ? @x -= 10 : @x += 10
+			after(500){@receiving_damage = false}
+			after(3000){@ready = true}
+		end
 	end
 
 	def update
