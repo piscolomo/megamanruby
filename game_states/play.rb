@@ -44,6 +44,8 @@ class Play < GameState
           enemy.x -= 1
           enemy.factor_x = 1
         end
+      else
+        enemy.state = :stand
       end
     end
   end
