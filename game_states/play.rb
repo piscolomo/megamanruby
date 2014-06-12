@@ -21,7 +21,7 @@ class Play < GameState
   end
 
 	def edit
-    push_game_state(GameStates::Edit.new(:grid => [18,18], :classes => [EnemyFace, Floor, Lifeball]))
+    push_game_state(GameStates::Edit.new(:grid => [18,18], :classes => [EnemyFace, EnemyTiny, Floor, Lifeball]))
   end
 
   def draw
@@ -49,7 +49,7 @@ class Play < GameState
       ball.destroy unless self.viewport.inside?(ball)
     end
 
-    #make the enemyface follow megaman
+    #make the EnemyFace follow megaman
 		EnemyFace.all.each do |face|
     	if face.x < @megaman.x
     		face.x += 1 
@@ -61,13 +61,28 @@ class Play < GameState
     	face.y < @megaman.y - @megaman.height/2 ? face.y += 1 : face.y -= 1
     end
 
-    #destroy enemyface and ball if collision  
+    #make the EnemyFace follow megaman
+    EnemyTiny.all.each do |tiny|
+      unless (@megaman.x - tiny.x).abs > 300
+        tiny.direction = :walk
+        if tiny.x < @megaman.x
+          tiny.x += 1 
+          tiny.factor_x = -1
+        else
+          tiny.x -= 1
+          tiny.factor_x = 1
+        end
+      end
+      #tiny.y < @megaman.y - @megaman.height/2 ? face.y += 1 : face.y -= 1
+    end
+
+    #destroy EnemyFace and ball if collision  
     Ball.each_collision(EnemyFace) do |ball, face|
 	    face.destroy
 	    ball.destroy
     end
 
-    #down life if megaman collision with enemyface
+    #down life if megaman collision with EnemyFace
     @megaman.each_collision(EnemyFace) do |me, face|
     	me.take_damage
       @lifebar.downlife(face.power)

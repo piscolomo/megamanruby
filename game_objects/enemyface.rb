@@ -3,7 +3,6 @@ class EnemyFace < GameObject
 	attr_accessor :direction, :power
 
 	def setup
-		@width = 20
 		@animations= Animation.new(:file => "enemyface.png", :size => [56,48], :delay => 400)
 		@animations.frame_names = { :left => 0..3, :right => 4..7}
 		@direction = :left
