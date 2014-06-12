@@ -30,6 +30,23 @@ class Play < GameState
   	@parallax.draw
   end
 
+  #make the EnemyFace follow megaman
+  def follow_megaman(classname, distance, fly=false)
+    classname.all.each do |enemy|
+      unless (@megaman.x - enemy.x).abs > distance
+        enemy.state = :walk
+        (enemy.y < @megaman.y - @megaman.height/2 ? enemy.y += 1 : enemy.y -= 1) if fly
+        if enemy.x < @megaman.x
+          enemy.x += 1 
+          enemy.factor_x = -1
+        else
+          enemy.x -= 1
+          enemy.factor_x = 1
+        end
+      end
+    end
+  end
+
 	def update
 		super
 
@@ -49,32 +66,9 @@ class Play < GameState
       ball.destroy unless self.viewport.inside?(ball)
     end
 
-    #make the EnemyFace follow megaman
-		EnemyFace.all.each do |face|
-    	if face.x < @megaman.x
-    		face.x += 1 
-    		face.direction = :right
-    	else
-    		face.x -= 1
-    		face.direction = :left
-    	end
-    	face.y < @megaman.y - @megaman.height/2 ? face.y += 1 : face.y -= 1
-    end
-
-    #make the EnemyFace follow megaman
-    EnemyTiny.all.each do |tiny|
-      unless (@megaman.x - tiny.x).abs > 300
-        tiny.direction = :walk
-        if tiny.x < @megaman.x
-          tiny.x += 1 
-          tiny.factor_x = -1
-        else
-          tiny.x -= 1
-          tiny.factor_x = 1
-        end
-      end
-      #tiny.y < @megaman.y - @megaman.height/2 ? face.y += 1 : face.y -= 1
-    end
+    #enemies moves
+    follow_megaman(EnemyFace, 600, true)
+    follow_megaman(EnemyTiny, 300)
 
     #destroy EnemyFace and ball if collision  
     Ball.each_collision(EnemyFace) do |ball, face|
