@@ -32,16 +32,16 @@
     :factor_y: 1.0
     :alpha: 255
 - EnemyFace:
-    :x: 443.0
-    :y: 519.0
+    :x: 338.0
+    :y: 518.0
     :angle: 0
     :zorder: 999999
     :factor_x: 1.0
     :factor_y: 1.0
     :alpha: 255
 - Lifeball:
-    :x: 738.0
-    :y: 522.0
+    :x: 72.0
+    :y: 576.0
     :angle: 0
     :zorder: 9999999
     :factor_x: 1
