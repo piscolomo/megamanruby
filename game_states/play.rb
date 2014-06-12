@@ -1,4 +1,4 @@
-class Play < Chingu::GameState
+class Play < GameState
 	trait :viewport
 	def initialize
 		super
@@ -7,7 +7,7 @@ class Play < Chingu::GameState
 		self.viewport.lag = 0
 		self.viewport.game_area = [0,0,5000,600]
 		load_game_objects
-		@parallax = Chingu::Parallax.new(:x => 0, :y=>0, :rotation_center => :top_left)
+		@parallax = Parallax.new(:x => 0, :y=>0, :rotation_center => :top_left)
     @parallax << { :image => "background.jpg", :repeat_x => true, :repeat_y => true}
 		@megaman = Megaman.create(:x => 80, :y=>200)
 		@lifebar = Lifebar.create

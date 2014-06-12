@@ -1,4 +1,4 @@
-class Floor < Chingu::GameObject
+class Floor < GameObject
   traits :bounding_box, :collision_detection
   
   def setup

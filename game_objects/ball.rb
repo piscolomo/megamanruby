@@ -1,4 +1,4 @@
-class Ball < Chingu::GameObject
+class Ball < GameObject
   traits :bounding_circle, :collision_detection
   
   def setup

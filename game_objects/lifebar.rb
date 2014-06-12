@@ -1,4 +1,4 @@
-class Lifebar < Chingu::GameObject
+class Lifebar < GameObject
   attr_accessor :health, :hitting
   trait :timer
   

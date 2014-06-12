@@ -5,7 +5,7 @@ include Chingu
 require_rel 'game_states/*'
 require_rel 'game_objects/*'
 
-class Game < Chingu::Window
+class Game < Window
 	def initialize
 		super(800, 600)
 		self.caption = "Megaman Game"

@@ -1,4 +1,4 @@
-class Linelifebar < Chingu::GameObject
+class Linelifebar < GameObject
 	attr_accessor :height, :x
 
   def to_s; end
@@ -11,6 +11,6 @@ class Linelifebar < Chingu::GameObject
   end
 
   def draw
-  	$window.fill_rect(Chingu::Rect.new(@x, @y, @width , @height), Gosu::Color.new(@color), @zorder)	
+  	$window.fill_rect(Rect.new(@x, @y, @width , @height), Gosu::Color.new(@color), @zorder)	
   end
 end

@@ -1,4 +1,4 @@
-class Intro < Chingu::GameState
+class Intro < GameState
 	def initialize
 		super
 		#Sound["opening.wav"].play
