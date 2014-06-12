@@ -1,9 +1,11 @@
 class BallRed < GameObject
   traits :bounding_circle, :collision_detection
+  attr_accessor :power
   
   def setup
     @image = Image["enemyball.png"]
     @zorder = 9999999
+    @power = 2
     cache_bounding_circle
   end
 

@@ -79,7 +79,7 @@ class Play < GameState
     end
 
     #down life if megaman collision with EnemyFace
-    @megaman.each_collision(EnemyFace, EnemyTiny) do |me, enemy|
+    @megaman.each_collision(EnemyFace, EnemyTiny, BallRed) do |me, enemy|
     	me.take_damage
       @lifebar.downlife(enemy.power)
     end

@@ -59,7 +59,7 @@ class Megaman < GameObject
 			@receiving_damage = true
 			@direction == :right ? @x -= 10 : @x += 10
 			after(500){@receiving_damage = false}
-			after(3000){@ready = true}
+			after(1500){@ready = true}
 		end
 	end
 
