@@ -32,8 +32,16 @@
     :factor_y: 1.0
     :alpha: 255
 - EnemyTiny:
-    :x: 1188.0
-    :y: 468.0
+    :x: 1125.0
+    :y: 546.0
+    :angle: 0
+    :zorder: 999999
+    :factor_x: 1
+    :factor_y: 1.0
+    :alpha: 255
+- EnemyFace:
+    :x: 1260.0
+    :y: 324.0
     :angle: 0
     :zorder: 999999
     :factor_x: 1

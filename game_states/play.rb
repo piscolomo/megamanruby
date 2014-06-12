@@ -31,12 +31,12 @@ class Play < GameState
   end
 
   #make the EnemyFace follow megaman
-  def follow_megaman(classname, distance, fly=false, shoot=false)
-    classname.all.each do |enemy|
-      enemy.shoot if shoot and self.viewport.inside?(enemy)
-      unless (@megaman.x - enemy.x).abs > distance
+  def follow_megaman(options={:fly => false, :shoot => false})
+    options[:classname].all.each do |enemy|
+      enemy.shoot if options[:shoot] and self.viewport.inside?(enemy)
+      unless (@megaman.x - enemy.x).abs > options[:distance]
         enemy.state = :walk
-        (enemy.y < @megaman.y - @megaman.height/2 ? enemy.y += 1 : enemy.y -= 1) if fly
+        (enemy.y < @megaman.y - @megaman.height/2 ? enemy.y += 1 : enemy.y -= 1) if options[:fly]
         if enemy.x < @megaman.x
           enemy.x += 1 
           enemy.factor_x = -1
@@ -67,8 +67,8 @@ class Play < GameState
     BallRed.all.each {|ball| ball.destroy unless self.viewport.inside?(ball)}
 
     #enemies moves
-    follow_megaman(EnemyFace, 600, true)
-    follow_megaman(EnemyTiny, 300, false, true)
+    follow_megaman :classname => EnemyFace, :distance => 600, :fly => true
+    follow_megaman :classname => EnemyTiny, :distance => 300, :shoot => true
 
     #destroy EnemyFace and ball if collision  
     Ball.each_collision(EnemyFace, EnemyTiny) do |ball, enemy|
