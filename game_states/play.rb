@@ -36,6 +36,9 @@ class Play < Chingu::GameState
     #lose the game if your life is 0
     push_game_state(Lose) if @lifebar.health == 0
 
+    #lose the game if megaman jump to hollow
+    push_game_state(Lose) if @megaman.y > $window.height
+
     #move the background
 		self.viewport.center_around(@megaman)
 		@parallax.camera_x, @parallax.camera_y = self.viewport.x.to_i, self.viewport.y.to_i
