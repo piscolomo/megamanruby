@@ -20,7 +20,7 @@ class Megaman < GameObject
 		super
 		self.input = [:holding_left, :holding_right, :holding_up, :left_control]
 
-		@animations[:stand] = Animation.new(:file => "standfull.png", :size => [62,48], :delay => 800)
+		@animations[:stand] = Animation.new(:file => "standfull.png", :size => [42,48], :delay => 800)
 		@animations[:stand].frame_names = { :left => 0..1, :right => 2..3}
 		@animations[:run] = Animation.new(:file => "runfull.png", :size => [48,48], :delay => 200)
 		@animations[:run].frame_names = { :left => 0..3, :right => 4..7}

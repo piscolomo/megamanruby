@@ -3,7 +3,7 @@ class EnemyFace < GameObject
 	attr_accessor :state, :power
 
 	def setup
-		@animations= Animation.new(:file => "enemyface.png", :size => [56,48], :delay => 400)
+		@animations= Animation.new(:file => "enemyface.png", :size => [46,48], :delay => 400)
 		@animations.frame_names = {:stand => 0..0, :walk => 0..3}
 		@state = :stand
 		@image = @animations[@state].next
