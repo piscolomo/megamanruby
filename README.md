@@ -1,6 +1,8 @@
 megamanruby
 ===========
 
+[www.megamanruby.com](http://www.megamanruby.com)
+
 A version of classic game Megaman made with Ruby using Gosu and Chingu
 
 Jump with up button and shoot with control
