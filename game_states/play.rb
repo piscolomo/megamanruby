@@ -9,7 +9,7 @@ class Play < GameState
 		load_game_objects
 		@parallax = Parallax.new(:x => 0, :y=>0, :rotation_center => :top_left)
     @parallax << { :image => "background.jpg", :repeat_x => true, :repeat_y => true}
-		@megaman = Megaman.create(:x => 80, :y => 200)
+		@megaman = Megaman.create(:x => 80, :y => 400)
 		@lifebar = Lifebar.create(:x => 30, :y => 100)
 	end
 

@@ -1,47 +1,175 @@
 ---
 - Floor:
-    :x: 756.0
-    :y: 612.0
+    :x: 753.0
+    :y: 603.0
     :angle: 0
     :zorder: 999999
     :factor_x: 47.05882352941177
     :factor_y: 1.0
     :alpha: 255
 - Floor:
-    :x: -1.0
-    :y: 599.0
+    :x: -21.0
+    :y: 603.0
     :angle: 0
     :zorder: 999999
     :factor_x: 47.05882352941177
     :factor_y: 1.0
     :alpha: 255
 - Floor:
-    :x: 1584.0
-    :y: 612.0
+    :x: 1530.0
+    :y: 602.0
     :angle: 0
     :zorder: 999999
     :factor_x: 47.05882352941177
     :factor_y: 1.0
     :alpha: 255
 - Floor:
-    :x: 2358.0
-    :y: 630.0
+    :x: 2301.0
+    :y: 602.0
     :angle: 0
     :zorder: 999999
     :factor_x: 47.05882352941177
+    :factor_y: 1.0
+    :alpha: 255
+- Floor:
+    :x: 3060.0
+    :y: 602.0
+    :angle: 0
+    :zorder: 999999
+    :factor_x: 47.05882352941177
+    :factor_y: 1.0
+    :alpha: 255
+- EnemyFace:
+    :x: 599.0
+    :y: 405.0
+    :angle: 0
+    :zorder: 999999
+    :factor_x: 1
     :factor_y: 1.0
     :alpha: 255
 - EnemyTiny:
-    :x: 1125.0
-    :y: 546.0
+    :x: 1314.0
+    :y: 532.0
     :angle: 0
     :zorder: 999999
     :factor_x: 1
     :factor_y: 1.0
     :alpha: 255
 - EnemyFace:
-    :x: 1260.0
-    :y: 324.0
+    :x: 2088.0
+    :y: 234.0
+    :angle: 0
+    :zorder: 999999
+    :factor_x: 1.0
+    :factor_y: 1.0
+    :alpha: 255
+- EnemyTiny:
+    :x: 2088.0
+    :y: 531.0
+    :angle: 0
+    :zorder: 999999
+    :factor_x: 1
+    :factor_y: 1.0
+    :alpha: 255
+- Lifeball:
+    :x: 2574.0
+    :y: 538.0
+    :angle: 0
+    :zorder: 9999999
+    :factor_x: 1.0
+    :factor_y: 1.0
+    :alpha: 255
+- Lifeball:
+    :x: 2646.0
+    :y: 538.0
+    :angle: 0
+    :zorder: 9999999
+    :factor_x: 1.0
+    :factor_y: 1.0
+    :alpha: 255
+- Lifeball:
+    :x: 2700.0
+    :y: 538.0
+    :angle: 0
+    :zorder: 9999999
+    :factor_x: 1.0
+    :factor_y: 1.0
+    :alpha: 255
+- EnemyTiny:
+    :x: 3474.0
+    :y: 531.0
+    :angle: 0
+    :zorder: 999999
+    :factor_x: 1
+    :factor_y: 1.0
+    :alpha: 255
+- EnemyTiny:
+    :x: 3528.0
+    :y: 531.0
+    :angle: 0
+    :zorder: 999999
+    :factor_x: 1
+    :factor_y: 1.0
+    :alpha: 255
+- EnemyTiny:
+    :x: 3582.0
+    :y: 531.0
+    :angle: 0
+    :zorder: 999999
+    :factor_x: 1
+    :factor_y: 1.0
+    :alpha: 255
+- EnemyFace:
+    :x: 3456.0
+    :y: 378.0
+    :angle: 0
+    :zorder: 999999
+    :factor_x: 1.0
+    :factor_y: 1.0
+    :alpha: 255
+- EnemyFace:
+    :x: 3654.0
+    :y: 360.0
+    :angle: 0
+    :zorder: 999999
+    :factor_x: 1.0
+    :factor_y: 1.0
+    :alpha: 255
+- EnemyFace:
+    :x: 3528.0
+    :y: 252.0
+    :angle: 0
+    :zorder: 999999
+    :factor_x: 1.0
+    :factor_y: 1.0
+    :alpha: 255
+- EnemyTiny:
+    :x: 3636.0
+    :y: 531.0
+    :angle: 0
+    :zorder: 999999
+    :factor_x: 1
+    :factor_y: 1.0
+    :alpha: 255
+- EnemyTiny:
+    :x: 3690.0
+    :y: 531.0
+    :angle: 0
+    :zorder: 999999
+    :factor_x: 1
+    :factor_y: 1.0
+    :alpha: 255
+- EnemyFace:
+    :x: 3312.0
+    :y: 270.0
+    :angle: 0
+    :zorder: 999999
+    :factor_x: 1.0
+    :factor_y: 1.0
+    :alpha: 255
+- EnemyTiny:
+    :x: 3096.0
+    :y: 504.0
     :angle: 0
     :zorder: 999999
     :factor_x: 1

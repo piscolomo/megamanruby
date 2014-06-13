@@ -27,6 +27,6 @@ class EnemyTiny < GameObject
 
 	def update
 		@image = @animations[@state].next
-		self.each_collision(Floor){ |enemytiny, floor| enemytiny.y = floor.bb.top - 10 }
+		self.each_collision(Floor){ |enemytiny, floor| enemytiny.y = floor.bb.top - 15 }
 	end
 end

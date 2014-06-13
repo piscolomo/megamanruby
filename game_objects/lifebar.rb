@@ -3,7 +3,7 @@ class Lifebar < GameObject
   trait :timer
   
   def setup
-    @health = 30
+    @health = 15
     @max_health = @health
     @lines = []
     @hitting = false

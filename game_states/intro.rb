@@ -1,7 +1,7 @@
 class Intro < GameState
 	def initialize
 		super
-		Sound["opening.wav"].play
+		#Sound["opening.wav"].play
 		self.input = {:return => Play}
 	end
 	def draw
