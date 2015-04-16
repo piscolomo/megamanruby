@@ -31,13 +31,13 @@ class Lifebar < GameObject
   def downlife(damage)
   	unless @hitting
     	@hitting = true
-      	damage.times do
-          unless @lines.empty?
-        		lineout = @lines.shift
-        		lineout.destroy
-            refresh_life
-        	end
+      damage.times do
+        unless @lines.empty?
+          lineout = @lines.shift
+        	lineout.destroy
+          refresh_life
         end
+      end
     	after(3000){ @hitting = false }
     end
   end
