@@ -1,16 +1,16 @@
 class Linelifebar < GameObject
-	attr_accessor :height, :x
+  attr_accessor :height, :x
 
   def to_s; end
   
   def setup
-  	@color = 0xffffffff
+    @color = 0xffffffff
     @width = 20
     @height = 3
     @zorder = 999999
   end
 
   def draw
-  	$window.fill_rect(Rect.new(@x, @y, @width , @height), Gosu::Color.new(@color), @zorder)	
+    $window.fill_rect(Rect.new(@x, @y, @width , @height), Gosu::Color.new(@color), @zorder)	
   end
 end
