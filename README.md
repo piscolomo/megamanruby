@@ -16,3 +16,13 @@ You can create your game level:
 Follow the link if you want to [install on Linux](https://github.com/TheBlasfem/megamanruby/wiki)
 
 Feel free to fork the repo, send your pull request with more enemies and items! ;)
+
+## OSX Setup
+
+* Install ruby 1.9.3 (these gems have issues with 2.0.x)
+* `brew install sdl2 libogg libvorbis`
+* `bundle`
+
+## Playing
+
+`ruby Main.rb`

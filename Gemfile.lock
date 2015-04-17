@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    chingu (0.9rc9)
+      gosu (>= 0.7.45)
+    gosu (0.7.45)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  chingu (= 0.9rc9)
+  gosu (= 0.7.45)
