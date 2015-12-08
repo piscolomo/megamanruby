@@ -1,7 +1,7 @@
 megamanruby
 ===========
 
-[www.megamanruby.com](http://www.megamanruby.com)
+[Visit the Website](http://theblasfem.github.io/megamanruby-site/)
 
 A version of classic game Megaman made with Ruby using Gosu and Chingu
 
